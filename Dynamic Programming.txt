@@ -1,0 +1,2 @@
+1. Kadane’s Algorithm => O(n)
+2. 
