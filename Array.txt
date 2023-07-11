@@ -118,18 +118,129 @@
 	
 	Now check Majority Element count is n/2 or not
 21. Kadane’s Algorithm (Maximum Subarray with Postive and Negative Element content)
+	Time Complexity : O(N)
+	Space Complexity : O(1)
 	For Reference https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
-	1. sum = 0; max = Integer.MIN_VALUE;
-	2. sum = Math.max(nums[i], sum+nums[i]);
+	1. sum = a[0]; max = a[0];
+	2. i=1 to n-1 do sum = Math.max(nums[i], sum+nums[i]); and maintain maxSum
 22. Print subarray with maximum subarray.
+	Time Complexity : O(N)
+	Space Complexity : O(1)
     find maximum sum of smallest and second smallest elements chosen from all possible sub-arrays
-	Please Note here also mentioned sub array so Loop 0 to N-1 and Math.max(res, arr[i]+arr[i+1]);	
+	Please Note here also mentioned sub array size>=2 so Loop 0 to N-2 and Math.max(res, arr[i]+arr[i+1]);	
 23. Best Time to Buy and Sell Stock
-1. intialize minPrice = 0, maxProfit = 0
-2. at each level contain minPrice and maxProfit (Math.max(maxProfit, prices[i] - minPrice))
-24. Rearrange Array Elements by Sign
+	Time Complexity : O(N)
+	Space Complexity : O(1)
+	1. intialize minPrice = 0, maxProfit = 0
+	2. at each level contain minPrice and maxProfit (Math.max(maxProfit, prices[i] - minPrice))
+24. Rearrange Array Elements by Sign. Alternate positive and negative numbers
+	If Question asked for Even distribution
+	Time Complexity : O(N)
+	Space Complexity : O(1)
+	1. declare pos and neg index variable (i.e pos = 0 and neg = -1)
+	2. iterate loop and relatively value store based on pos or neg index in new ans array.(If curentEle > 0 then ans[pos] = curentEle and increment pos index else ans[neg] = element and increment neg index)
+       (Note It incrmented by 2. increment pos+= 2 and neg+= 2)
+	If Question asked for Odd distribution
+	Time Complexity : O(2N)
+	Space Complexity : O(N)
+	1. Create 2 Arrays. One contains positive values and another contains negative values
+	(Note : nums[2*i] = pos[i];
+           nums[2*i+1] = neg[i];)
+	2. If Negative counts more than Positive counts then
+		Fill Postive and Negative values in the array till Postive Count
+		Fill Rest Negative Values. (i.e start from nNegCount to nPosCount and index start from nNegCount * 2 which is start index for in place change in array)
+	3. Else
+		Fill Postive and Negative values in the array till Negative Count
+		Fill Rest Positive Values. (i.e start from nPosCount to nNegCount and index start from nPosCount * 2 which is start index for in place change in array)
+25. Next Permutation
+	Observation 1 is 
+	[1, 2, 3]
+	[1, 3, 2]
+	[2, 1, 3]
+	[2, 3, 1]
+	[3, 1, 2]
+	[3, 2, 1]
+	
+	If 1, 3, 2 see then it is increasing order from back side 2 then 3
+	so Here break point is 1 => [1] , [3,2]
+	Find break-point from backward direction by a[i] < a[i+1]
+	Observation 2 is : 
+	If the break-point does not exist i.e. ind remains -1 in the code
+	Reverse whole array.
+	Observation 3 :
+	As the left half of the break-point should remain the same, we will not perform any operation on the left half. 
+	Traverse the array in the backward direction, and at the first index where arr[index] > arr[break-point], we will swap arr[index] and arr[break-point].
+	1>2 then swap 2, (i.e prev = 1, 3, 2 and next will be 2, 3, 1)
+	Observation 4 :
+	Reverse entire half part (here our right half is 3,1 so after reverse array will become is 1,3 and final solution is 2, 1, 3)
+	reverse array from ind+1 to n-1
 
-
+	Fast Dry Run
+	1, 3, 2 got [1] and [3,2]
+	After swap 2, 3, 1
+    After reverse right half 2, 1, 3
+26. Leaders in an Array problem
+	Time Complexity : O(n)
+	Space Complexity : O(m)
+	Just Simply rotate array from backward side and put leaders in array list.
+	After that reverse the list using Collection.reverse method and return list.
+27. Longest Consecutive Sequence
+	First write edge cases here null and for empty
+	1. Store all elements in set
+	2. left considering num -1 and right should be num + 1
+	3. Optimize soution with removing element from stack
+		while(set.remove(left)) left--;
+		while(set.remove(right)) right++;
+	4. store max by right - left + 1
+    5. In loop every ieration check If set is empty then return max.	
+28. Set Matrix Zeros
+29. Rotate Matrix by 90 degrees
+30. Print the matrix in spiral manner
+31. Count subarrays with given sum
+32. Pascal's Triangle
+		   1	
+		  1	1
+		1  2 1
+	  1  3  3 1	
+	 1 4  6  4 1	
+	1 5 10 10 5 1
+	(Row No) R=5, (Column no)C=3
+	ans = 6
+	Variation 1
+	In this case, we are given the row number r and the column number c, and we need to find out the element at position (r,c). 
+	
+	variation 2
+	Given the row number n. Print the n-th row of Pascal’s triangle.
+	N = 5
+	ans = 1 4 6 4 1
+	
+	Variation 3: 
+	Given the number of rows n. Print the first n rows of Pascal’s triangle.
+	N=5
+		   1	
+		  1	1
+		1  2 1
+	  1  3  3 1	
+	 1 4  6  4 1
+	 
+	Observation
+    : nCr = (r-1)C(c-1)	
+	: nCr = n!/(r! * (n-r)!)
+	
+	Solve Variation 1 :
+	: 4C2 = 4!/(2! * 2!) = 3*2 = 6
+	int nCr(int n, int r){
+		int res = 1;
+		for(int i=1; i<r; ++i){
+			res *= n-i;
+			res /= i+1;
+		}
+		return res;
+	}
+	
+33. 
+34. 
+35. 
    
 3. Product of Array Except Self: Given an array of integers, return an array where each element is the product of all the elements in the original array except itself.
 
