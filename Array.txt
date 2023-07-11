@@ -228,19 +228,58 @@
 	: nCr = n!/(r! * (n-r)!)
 	
 	Solve Variation 1 :
+	Time Complexity : O(n)
+	Space Complexity : O(1)
 	: 4C2 = 4!/(2! * 2!) = 3*2 = 6
 	int nCr(int n, int r){
 		int res = 1;
-		for(int i=1; i<r; ++i){
+		for(int i=0; i<r; ++i){
 			res *= n-i;
 			res /= i+1;
 		}
 		return res;
 	}
 	
+	Solve Variation 2 :
+	Time Complexity : O(n)
+	Space Complexity : O(1)
+	
+	Observation
+	For 5th row n=5, ans = 1 4  6  4 1
+	1 4/1 4*3/1*2  4*3*2/1*2*3 4*3*2*1/1*2*3*4
+	1  
+	4	
+	3/2 just added in last
+	2/3 just added 
+	1
+	ans = 1;
+	print(ans)
+	for(i=1; i<n;++i){
+		ans *= (n-i); 
+		ans /= i;
+		print(ans)
+	}
+        
+	Solve Variation 3 :
+	
+	
 33. 
-34. 
-35. 
+34. 3 Sum : Find triplets that add up to a zero
+	Problem Statement: Given an array of N integers, your task is to find unique triplets 
+	that add up to give a sum of zero. In short, you need to return an array of all the unique triplets [arr[a], arr[b], arr[c]] 
+	such that i!=j, j!=k, k!=i, and their sum is equal to zero.
+	Input: nums = [-1,0,1,2,-1,-4]
+	Output: [[-1,-1,2],[-1,0,1]]
+	Input: nums=[-1,0,1,0]
+	Output: Output: [[-1,0,1],[-1,1,0]]
+35. 4 Sum | Find Quads that add up to a target value
+	Given an array of N integers, 
+	your task is to find unique quads that add up to give a target value. 
+	In short, you need to return an array of all the unique quadruplets [arr[a], arr[b], arr[c], arr[d]] 
+	such that their sum is equal to a given target.
+	0 <= a, b, c, d < n
+	a, b, c, and d are distinct.
+	arr[a] + arr[b] + arr[c] + arr[d] == target
    
 3. Product of Array Except Self: Given an array of integers, return an array where each element is the product of all the elements in the original array except itself.
 
