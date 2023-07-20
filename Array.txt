@@ -261,9 +261,19 @@
 	}
         
 	Solve Variation 3 :
-	
-	
-33. 
+	Use solution 2 for each row print.	
+33. Majority Elements(>N/3 times) | Find the elements that appears more than N/3 times in the array
+	Example 1:
+	Input Format: N = 5, array[] = {1,2,2,3,2}
+	Result: 2
+	Example 2:
+	Input Format:  N = 6, array[] = {11,33,33,11,33,11}
+	Result: 11 33
+	It is extended moore's voting algorithm n/2 majority elements
+	Time Complexity : O(2n)
+	Space Complexity : O(1)
+	Take 2 count variables and 2 element as Integer.MIN_VALUE.
+	Maintain conditions for both
 34. 3 Sum : Find triplets that add up to a zero
 	Problem Statement: Given an array of N integers, your task is to find unique triplets 
 	that add up to give a sum of zero. In short, you need to return an array of all the unique triplets [arr[a], arr[b], arr[c]] 
@@ -272,6 +282,17 @@
 	Output: [[-1,-1,2],[-1,0,1]]
 	Input: nums=[-1,0,1,0]
 	Output: Output: [[-1,0,1],[-1,1,0]]
+	Time Complexity : O(n log n) + (n * n)
+	Space Complexity : O (no of unique triplets)
+	After Sorting take 2 pointer approach
+	1. Sort the Array
+	2. Iterate Loop from 0 to n-1 and fixed i pointer and check for unique that 
+		If i index value match with previous value then skip
+		take j as i's next and k as n-1 or end
+		Do While j<k
+		If sum becomes 0 then store triplets in result and increment j, decrement k and skip duplicate values  
+		If sum < 0 then increment j and
+		If sum > 0 then decrement k
 35. 4 Sum | Find Quads that add up to a target value
 	Given an array of N integers, 
 	your task is to find unique quads that add up to give a target value. 
@@ -280,7 +301,12 @@
 	0 <= a, b, c, d < n
 	a, b, c, and d are distinct.
 	arr[a] + arr[b] + arr[c] + arr[d] == target
-   
+	Time Complexity : (n * n * n) = n^3
+	Space Complexity : O (no of unique Quads)
+	Similar to Above one Sorting and Two Pointer approach needed
+	Here i,j becomes fixed variables and whatever earlier example did for j & k similar required for k & l 
+36. 
+	
 3. Product of Array Except Self: Given an array of integers, return an array where each element is the product of all the elements in the original array except itself.
 
 4. Container With Most Water: Given an array of non-negative integers representing the heights of vertical lines, find two lines that together with the x-axis form a container that holds the most water.
